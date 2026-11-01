@@ -1083,20 +1083,13 @@ input[type=password]{font:inherit;width:100%;min-height:46px;padding:10px 12px;b
       var pend = pendentes();
       var pub = registros();
       box.replaceChildren();
-      var nArq = pub.filter(function (x) { return x.origem === "arquivo"; }).length;
       var exp = h("button", { class: "btn btn-primary", type: "button", disabled: !pub.length }, "Exportar dados do site (dados.js)");
       var expStatus = h("p", { class: "hint", role: "status" });
       exp.addEventListener("click", function () {
         var n = exportarDados();
         expStatus.textContent = "Arquivo dados.js gerado com " + n + (n === 1 ? " local publicado." : " locais publicados.") + " Coloque-o na mesma pasta do HTML.";
       });
-      box.append(h("section", { class: "revisao", "aria-labelledby": "x-t" },
-        h("h2", { id: "x-t", text: "Levar os locais para outro computador" }),
-        h("p", { text: "Gera o arquivo dados.js com todos os locais publicados, incluindo as fotos. Deixe esse arquivo na mesma pasta do HTML do site: em qualquer computador, os locais aparecem na galeria ao abrir a página. Envios em análise não entram no arquivo." }),
-        nArq ? h("p", { class: "hint", text: nArq + (nArq === 1 ? " local publicado veio" : " locais publicados vieram") + " do dados.js desta pasta." }) : null,
-        h("div", { class: "acoes" }, exp),
-        expStatus
-      ));
+      box.append(h("div", { class: "acoes" }, exp), expStatus);
       box.append(h("section", { class: "revisao", "aria-labelledby": "p-t" },
         h("h2", { id: "p-t", text: "Envios para revisar (" + pend.length + ")" }),
         pend.length ? h("div", null, pend.map(function (e) {
