@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Caminho Livre Niterói</title>
+<meta name="description" content="Registro em fotos das barreiras de acessibilidade para pessoas com deficiência motora em Niterói.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: cabeçalho simples, faixa de piso tátil amarelo como assinatura, grade de fotos e dois diálogos (enviar, detalhe). */
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --ink:#0F2742; --muted:#4B5D72;
+  --line:#D5DCE5; --line-strong:#8496AA;
+  --tatil:#F5C400; --on-tatil:#0F2742; --link:#0B5CAD; --focus:#0B5CAD;
+  --imp:#A8201A; --imp-bg:#FBE6E3; --dif:#8F4F00; --dif-bg:#FCEFD6; --atr:#2F516F; --atr-bg:#E3ECF4;
+  --ok:#14663A; --ok-bg:#DDF3E6;
+  --font-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --font-body:"Atkinson Hyperlegible",Verdana,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1A2C; --surface:#10253B; --ink:#EAF0F7; --muted:#A9B8C9;
+    --line:#25405C; --line-strong:#5B7592;
+    --tatil:#F5C400; --on-tatil:#0F2742; --link:#8CC0F7; --focus:#FFD84D;
+    --imp:#FF9A92; --imp-bg:#3B1B1B; --dif:#FFC46B; --dif-bg:#3A2A10; --atr:#A9CBE8; --atr-bg:#16304A;
+    --ok:#7FDBA6; --ok-bg:#12301F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1A2C; --surface:#10253B; --ink:#EAF0F7; --muted:#A9B8C9;
+  --line:#25405C; --line-strong:#5B7592;
+  --tatil:#F5C400; --on-tatil:#0F2742; --link:#8CC0F7; --focus:#FFD84D;
+  --imp:#FF9A92; --imp-bg:#3B1B1B; --dif:#FFC46B; --dif-bg:#3A2A10; --atr:#A9CBE8; --atr-bg:#16304A;
+  --ok:#7FDBA6; --ok-bg:#12301F;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--font-body)}
+h1,h2,h3{font-family:var(--font-display);font-weight:800;line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--link)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;background:var(--tatil);color:var(--on-tatil);padding:10px 14px;font-weight:700;z-index:20;border-radius:4px}
+.skip:focus{top:8px}
+
+/* topo */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:18px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.mark{flex:none;width:40px;height:40px;border:2px solid var(--on-tatil);border-radius:4px;background-color:var(--tatil);background-image:radial-gradient(circle at 50% 50%,var(--on-tatil) 0 3px,transparent 3.6px);background-size:12px 12px;background-position:center}
+.brand b{display:block;font:800 20px/1 var(--font-display)}
+.brand span{display:block;color:var(--muted);font-size:14px}
+.tatil{height:22px;background-color:var(--tatil);background-image:radial-gradient(circle at 11px 11px,var(--on-tatil) 0 4px,transparent 4.6px);background-size:22px 22px;border-block:2px solid var(--on-tatil)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;font:700 16px/1.1 var(--font-body);border:2px solid var(--line-strong);border-radius:6px;background:transparent;color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.btn-primary{background:var(--tatil);color:var(--on-tatil);border-color:var(--on-tatil)}
+.btn-primary:hover{filter:brightness(.96)}
+.btn-sm{min-height:40px;padding:0 14px;font-size:15px}
+.btn-danger{color:var(--imp);border-color:var(--imp)}
+
+/* hero */
+.hero{padding-block:44px 36px;display:grid;gap:22px}
+.hero h1{font-size:clamp(2.1rem,6.2vw,3.7rem);max-width:17ch;letter-spacing:-.01em}
+.lead{max-width:62ch;font-size:19px;color:var(--ink)}
+.hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.stats{color:var(--muted);font-size:16px}
+.stats strong{color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* filtros */
+.filtros{display:grid;gap:14px;padding-block:28px 8px}
+.filtros h2{font-size:1.5rem}
+.linha{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px}
+.field{display:grid;gap:6px;min-width:0}
+label,legend{font-weight:700;font-size:16px}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+input[type=text],input[type=search],select,textarea{font:inherit;width:100%;min-height:46px;padding:10px 12px;border:2px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+input[type=file]{font:inherit;width:100%;padding:10px;border:2px dashed var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink)}
+.hint{color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{min-height:40px;padding:0 12px;font:400 15px/1.1 var(--font-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:4px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}
+.contagem{color:var(--muted);font-size:15px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;min-height:40px}
+
+/* galeria */
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:22px;padding-block:14px 40px}
+.card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1.5px solid var(--line);border-radius:6px;overflow:hidden}
+.card:hover{border-color:var(--ink)}
+.card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--line)}
+.card-body{display:grid;gap:8px;padding:14px;align-content:start;min-width:0}
+.card h3{font-size:1.15rem;line-height:1.2}
+.card-open{all:unset;cursor:pointer}
+.card-open::after{content:"";position:absolute;inset:0}
+.card-open:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
+.meta{color:var(--muted);font-size:15px;overflow-wrap:anywhere}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:13.5px;padding:3px 8px;border:1px solid var(--line-strong);border-radius:3px;color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:8px;width:fit-content;font-size:14px;font-weight:700;padding:3px 10px 3px 8px;border-radius:3px}
+.pill::before{content:"";width:10px;height:10px;background:currentColor;flex:none}
+.sev-impede{color:var(--imp);background:var(--imp-bg)}
+.sev-impede::before{border-radius:0}
+.sev-dificulta{color:var(--dif);background:var(--dif-bg)}
+.sev-dificulta::before{transform:rotate(45deg) scale(.85);border-radius:0}
+.sev-atrapalha{color:var(--atr);background:var(--atr-bg)}
+.sev-atrapalha::before{border-radius:50%}
+.estado{padding:34px 22px;border:2px dashed var(--line-strong);border-radius:6px;display:grid;gap:12px;justify-items:start;margin-block:14px 40px}
+.estado h3{font-size:1.4rem}
+.estado p{max-width:56ch;color:var(--muted)}
+
+/* lista de envios do usuário */
+.revisao{margin-block:26px 6px;padding:20px;background:var(--surface);border:2px solid var(--ink);border-radius:6px;display:grid;gap:16px}
+.revisao h2{font-size:1.4rem}
+.rev{display:grid;grid-template-columns:132px minmax(0,1fr);gap:16px;padding-top:16px;border-top:1.5px solid var(--line)}
+.rev-img{all:unset;cursor:pointer;display:block}
+.rev-img img{display:block;width:132px;aspect-ratio:4/3;object-fit:cover;border-radius:4px;background:var(--line)}
+.rev-body{display:grid;gap:8px;min-width:0}
+.rev-body h3{font-size:1.1rem}
+.rev-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* como funciona */
+.como{background:var(--surface);border-block:1.5px solid var(--line);padding-block:34px}
+.como h2{font-size:1.5rem;margin-bottom:18px}
+.passos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:22px;list-style:none;margin:0;padding:0;counter-reset:p}
+.passos li{counter-increment:p;display:grid;gap:6px;padding-top:14px;border-top:4px solid var(--tatil)}
+.passos li::before{content:"Passo " counter(p);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.passos b{font-size:18px}
+.rodape{padding-block:26px 40px;color:var(--muted);font-size:15px;max-width:76ch}
+
+/* diálogos */
+dialog{border:2px solid var(--ink);border-radius:8px;padding:0;background:var(--surface);color:var(--ink);width:min(680px,calc(100% - 24px));max-height:calc(100% - 24px);overflow:auto}
+dialog::backdrop{background:rgba(5,15,28,.62)}
+.dlg-in{padding:22px;display:grid;gap:18px}
+.dlg-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.dlg-head h2{font-size:1.5rem}
+.dlg-foto{display:block;width:100%;max-height:60vh;object-fit:contain;background:var(--line);border-radius:4px}
+.dlg-dados{display:grid;gap:10px}
+.dlg-dados p{white-space:pre-wrap;overflow-wrap:anywhere}
+form{display:grid;gap:18px}
+.check{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:6px 0;font-weight:400}
+.check input{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--link)}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));column-gap:16px}
+.prev img{display:block;max-width:100%;max-height:240px;border-radius:4px;border:1.5px solid var(--line)}
+.erro{color:var(--imp);background:var(--imp-bg);padding:10px 12px;border-radius:4px;font-weight:700}
+.sucesso{display:grid;gap:14px;padding:16px;border-radius:6px;background:var(--ok-bg);color:var(--ok)}
+.sucesso p{color:inherit}
+.acoes{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+@media (max-width:560px){
+  .linha{grid-template-columns:1fr}
+  .rev{grid-template-columns:1fr}
+  .rev-img img{width:100%;max-width:260px}
+  .hero{padding-block:30px 26px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* conta e login */
+.conta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.conta-email{color:var(--muted);font-size:15px;max-width:26ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.abas{display:flex;gap:8px;flex-wrap:wrap}
+input[type=password]{font:inherit;width:100%;min-height:46px;padding:10px 12px;border:2px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink)}
+.meus{border-color:var(--line-strong)}
+@media (max-width:560px){.conta-email{display:none}}
+
+/* ===== versão com várias páginas ===== */
+a.btn{text-decoration:none}
+.top{align-items:flex-start}
+.brand{color:var(--ink);text-decoration:none}
+.topo-dir{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.nav{display:flex;gap:2px 20px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;color:var(--ink);font-weight:700;text-decoration:none;border-bottom:4px solid transparent}
+.nav a:hover{border-bottom-color:var(--line-strong)}
+.nav a[aria-current="page"]{border-bottom-color:var(--tatil)}
+.conta .btn[aria-current="page"]{border-color:var(--ink);background:var(--surface)}
+.pagina-topo{padding-block:36px 8px;display:grid;gap:12px}
+.pagina-topo h1{font-size:clamp(1.9rem,5vw,2.9rem);max-width:22ch}
+.secao{padding-block:30px 8px;display:grid;gap:16px}
+.secao h2,.sec-head h2{font-size:1.6rem}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:20px;padding-block:8px 14px}
+.num{border-top:4px solid var(--tatil);padding-top:10px;display:grid;gap:2px}
+.num b{font:800 clamp(2.2rem,6vw,3rem)/1 var(--font-display);font-variant-numeric:tabular-nums}
+.num span{color:var(--muted)}
+.tipos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:10px}
+.tipo-link{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px;padding:8px 14px;background:var(--surface);border:1.5px solid var(--line);border-radius:6px;color:var(--ink);text-decoration:none}
+.tipo-link:hover{border-color:var(--ink)}
+.tipo-link b{font-variant-numeric:tabular-nums;background:var(--tatil);color:var(--on-tatil);min-width:30px;text-align:center;padding:2px 8px;border-radius:3px}
+.card-open{display:block}
+.card-open:hover{text-decoration:underline}
+.migalhas{padding-block:22px 0;color:var(--muted);font-size:15px}
+.detalhe{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:32px;padding-block:18px 36px;align-items:start}
+.detalhe-foto{display:grid;gap:10px}
+.detalhe-foto img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--line);border-radius:6px;border:1.5px solid var(--line)}
+.h-detalhe{font-size:clamp(1.6rem,4vw,2.3rem)}
+.descricao{font-size:18px;white-space:pre-wrap;overflow-wrap:anywhere}
+.aviso{background:var(--dif-bg);color:var(--dif);padding:10px 12px;border-radius:4px;font-weight:700}
+.h-estado{font-size:1.5rem}
+.texto{max-width:68ch;display:grid;gap:14px;padding-block:18px 36px}
+.texto h2{font-size:1.5rem;margin-top:14px}
+.texto ul,.texto ol{margin:0;padding-left:22px;display:grid;gap:8px}
+.legenda{display:grid;gap:14px;list-style:none;padding:0!important}
+.legenda li{display:grid;gap:4px}
+.faixa{background:var(--surface);border-block:1.5px solid var(--line);padding-block:34px;margin-top:34px}
+.faixa .wrap{display:grid;gap:18px}
+.faixa h2{font-size:1.5rem}
+.rodape-site{padding-block:26px 40px}
+.rodape-grade{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:28px}
+.rodape-marca{display:block;font:800 18px/1.2 var(--font-display);margin-bottom:6px}
+.rodape-links{display:grid;gap:4px;align-content:start}
+.rodape-links a{display:inline-flex;align-items:center;min-height:40px}
+.abas{display:flex;gap:8px;flex-wrap:wrap}
+.formulario{max-width:680px;padding-block:20px 40px;display:grid;gap:20px}
+.caixa{background:var(--surface);border:2px solid var(--ink);border-radius:6px;padding:22px;display:grid;gap:18px}
+input[type=password]{font:inherit;width:100%;min-height:46px;padding:10px 12px;border:2px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink)}
+.rev-img{text-decoration:none}
+.rev-img img{display:block}
+.revisao{margin-block:20px 6px}
+@media (max-width:800px){
+  .detalhe{grid-template-columns:1fr}
+  .rodape-grade{grid-template-columns:1fr}
+  .topo-dir{align-items:flex-start;width:100%}
+  .nav{justify-content:flex-start}
+}
+@media (max-width:560px){.conta-email{display:none}}
+
+[hidden]{display:none!important}
+
+</style>
+</head>
+<body data-page="home">
+<div id="topo"></div>
+<main id="conteudo" tabindex="-1"></main>
+<div id="rodape"></div>
+<template id="tpl-home">
+
+  <section class="wrap hero" aria-labelledby="titulo">
+    <h1 id="titulo">Onde Niterói ainda não deixa passar</h1>
+    <p class="lead">Fotos de calçadas, rampas, entradas e outros pontos da cidade que dificultam ou impedem a circulação de pessoas com deficiência motora. Conhece um lugar assim? Entre na sua conta, envie a foto e diga o que está errado.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#/galeria">Ver a galeria</a>
+      <a class="btn btn-ghost" href="#/enviar">Enviar uma foto</a>
+    </div>
+  </section>
+  <section class="wrap" aria-labelledby="n-t">
+    <h2 class="sr-only" id="n-t">Números do site</h2>
+    <div class="numeros" id="home-numeros"></div>
+  </section>
+  <section class="wrap secao" aria-labelledby="rec-t">
+    <div class="sec-head"><h2 id="rec-t">Registros recentes</h2><a href="#/galeria">Ver todos os locais</a></div>
+    <div class="grade" id="home-recentes"></div>
+  </section>
+  <section class="wrap secao" aria-labelledby="tp-t">
+    <h2 id="tp-t">Procure por tipo de barreira</h2>
+    <div class="tipos" id="home-tipos"></div>
+  </section>
+  <section class="faixa" aria-labelledby="f-t">
+    <div class="wrap">
+      <h2 id="f-t">Quer contribuir?</h2>
+      <p class="lead">Crie uma conta, fotografe a barreira inteira e conte o que acontece ali. Cada envio é revisado antes de aparecer na galeria.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#/enviar">Enviar uma foto</a>
+        <a href="#/como-funciona">Ver como funciona</a>
+      </div>
+    </div>
+  </section>
+</template>
+<template id="tpl-galeria">
+
+  <div class="wrap">
+    <div class="pagina-topo">
+      <h1>Galeria de locais</h1>
+      <p class="lead">Cada registro mostra o local, o tipo de barreira e o quanto ela atrapalha. Use os filtros para achar um bairro ou um tipo de problema.</p>
+    </div>
+    <section class="filtros" aria-labelledby="filtros-titulo">
+      <h2 id="filtros-titulo" class="sr-only">Filtros</h2>
+      <div class="linha">
+        <div class="field">
+          <label for="busca">Buscar por nome, rua ou descrição</label>
+          <input type="search" id="busca" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="filtro-bairro">Bairro</label>
+          <select id="filtro-bairro"><option value="">Todos os bairros</option></select>
+        </div>
+      </div>
+      <fieldset>
+        <legend>Tipo de barreira</legend>
+        <div class="chips" id="chips"></div>
+      </fieldset>
+      <div class="contagem"><span id="contagem" role="status" aria-live="polite"></span><button class="btn btn-ghost btn-sm" type="button" id="limpar" hidden>Limpar filtros</button></div>
+    </section>
+    <section aria-label="Locais encontrados">
+      <div id="estado"></div>
+      <div class="grade" id="grade"></div>
+    </section>
+  </div>
+</template>
+<template id="tpl-local">
+
+  <div class="wrap" id="local"></div>
+</template>
+<template id="tpl-enviar">
+
+  <div class="wrap">
+    <div class="pagina-topo">
+      <h1>Enviar uma foto</h1>
+      <p class="lead">Mostre a barreira inteira e conte o que acontece ali. O envio é revisado antes de ser publicado.</p>
+    </div>
+
+    <div class="formulario" id="enviar-login" hidden>
+      <div class="caixa">
+        <h2>Entre para enviar fotos</h2>
+        <p>Para enviar uma foto é preciso ter uma conta. Entre com o seu e-mail ou crie uma conta.</p>
+        <div class="acoes"><a class="btn btn-primary" href="#/entrar?voltar=enviar">Entrar ou criar conta</a></div>
+      </div>
+    </div>
+
+    <div class="formulario" id="enviar-form" hidden>
+      <form id="form-envio" novalidate>
+        <div class="field">
+          <label for="f-foto">Foto do local</label>
+          <input type="file" id="f-foto" accept="image/*">
+          <p class="hint">Mostre a barreira inteira. Evite pessoas identificáveis.</p>
+          <div class="prev" id="f-prev" hidden><img id="f-prev-img" alt="Pré-visualização da foto escolhida"></div>
+          <p class="hint" id="f-status" role="status"></p>
+        </div>
+        <div class="field">
+          <label for="f-local">Nome do local</label>
+          <input type="text" id="f-local" maxlength="80" autocomplete="off" placeholder="Ex.: calçada em frente à escola, entrada da praça">
+        </div>
+        <div class="linha">
+          <div class="field">
+            <label for="f-bairro">Bairro</label>
+            <input type="text" id="f-bairro" maxlength="40" list="lista-bairros" autocomplete="off">
+            <datalist id="lista-bairros"></datalist>
+          </div>
+          <div class="field">
+            <label for="f-end">Rua ou ponto de referência (opcional)</label>
+            <input type="text" id="f-end" maxlength="120" autocomplete="off">
+          </div>
+        </div>
+        <fieldset>
+          <legend>O que atrapalha? Marque um ou mais</legend>
+          <div class="checks" id="f-tipos"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Quanto isso atrapalha?</legend>
+          <div class="checks" id="f-grav"></div>
+        </fieldset>
+        <div class="field">
+          <label for="f-desc">Descreva o que a foto mostra e qual é o problema</label>
+          <textarea id="f-desc" maxlength="400"></textarea>
+          <p class="hint">Esse texto também descreve a imagem para quem usa leitor de tela.</p>
+        </div>
+        <label class="check" for="f-ok"><input type="checkbox" id="f-ok"><span>Confirmo que a foto não mostra pessoas identificáveis e que fui eu que a tirei.</span></label>
+        <p class="erro" id="f-erro" role="alert" hidden></p>
+        <div class="acoes">
+          <button class="btn btn-primary" type="submit" id="f-enviar">Enviar para revisão</button>
+          <a class="btn btn-ghost" href="#/galeria">Cancelar</a>
+        </div>
+      </form>
+      <div class="sucesso" id="envio-ok" hidden>
+        <p><b>Foto enviada.</b> Ela aparece na galeria depois da revisão.</p>
+        <div class="acoes">
+          <button class="btn btn-ghost" type="button" id="ok-outra">Enviar outra foto</button>
+          <a class="btn btn-primary" id="ok-ver" href="#/enviar">Ver meus envios</a>
+        </div>
+      </div>
+      <section class="revisao meus" id="meus-wrap" aria-labelledby="meus-titulo" hidden>
+        <h2 id="meus-titulo">Seus envios em análise (<span id="meus-n">0</span>)</h2>
+        <p class="hint">Estas fotos ainda não aparecem na galeria. Elas são publicadas depois da revisão.</p>
+        <div id="meus-lista"></div>
+      </section>
+    </div>
+  </div>
+</template>
+<template id="tpl-entrar">
+
+  <div class="wrap">
+    <div class="pagina-topo">
+      <h1 id="auth-titulo">Entrar</h1>
+      <p class="lead">Para enviar fotos é preciso ter uma conta.</p>
+    </div>
+    <div class="formulario">
+      <div class="caixa">
+        <div class="abas" role="group" aria-label="Escolha uma opção">
+          <button class="chip" type="button" id="aba-entrar" aria-pressed="true">Já tenho conta</button>
+          <button class="chip" type="button" id="aba-criar" aria-pressed="false">Criar conta</button>
+        </div>
+        <form id="form-auth" novalidate>
+          <div class="field">
+            <label for="a-email">E-mail</label>
+            <input type="text" id="a-email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="a-senha">Senha</label>
+            <input type="password" id="a-senha" autocomplete="current-password">
+            <p class="hint" id="a-dica" hidden>Use pelo menos 8 caracteres.</p>
+          </div>
+          <label class="check" for="a-admin"><input type="checkbox" id="a-admin"><span>Entrar como administrador (libera a página Revisar envios)</span></label>
+          <p class="erro" id="a-erro" role="alert" hidden></p>
+          <div class="acoes"><button class="btn btn-primary" type="submit" id="a-enviar">Entrar</button></div>
+        </form>
+        <div id="ja-logado" hidden>
+          <p>Você já está conectado como <b id="ja-email"></b>. Use o botão Sair no topo da página para trocar de conta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="tpl-revisar">
+
+  <div class="wrap">
+    <div class="pagina-topo">
+      <h1>Revisão de envios</h1>
+      <p class="lead">Aprovar publica o local na galeria. Recusar apaga o envio e a foto.</p>
+    </div>
+    <div id="rev-conteudo"></div>
+  </div>
+</template>
+<template id="tpl-como">
+
+  <div class="wrap">
+    <div class="pagina-topo">
+      <h1>Como funciona</h1>
+      <p class="lead">Do envio da foto à publicação na galeria.</p>
+    </div>
+  </div>
+  <section class="wrap texto" aria-labelledby="c1">
+    <h2 id="c1">Passo a passo</h2>
+    <ol class="passos">
+      <li><b>Fotografe o problema</b><span>Mostre a barreira inteira: o degrau, a calçada quebrada, a porta estreita.</span></li>
+      <li><b>Entre e conte o que acontece ali</b><span>Crie uma conta com e-mail e senha. Diga o nome do local, o bairro e como a barreira afeta quem usa cadeira de rodas, muletas ou anda com dificuldade.</span></li>
+      <li><b>Revisão e publicação</b><span>Cada envio é revisado antes de aparecer na galeria.</span></li>
+    </ol>
+    <p><a class="btn btn-primary" href="#/enviar">Enviar uma foto</a></p>
+  </section>
+  <section class="wrap texto" aria-labelledby="c2">
+    <h2 id="c2">O que significa cada nível</h2>
+    <ul class="legenda">
+      <li><span class="pill sev-impede">Impede a passagem</span><span>A pessoa não consegue passar ou entrar sem ajuda de outra pessoa. Exemplo: porta com degrau alto e sem rampa.</span></li>
+      <li><span class="pill sev-dificulta">Dificulta muito</span><span>Dá para passar, mas com esforço grande, risco de queda ou por um caminho pior. Exemplo: rampa muito inclinada.</span></li>
+      <li><span class="pill sev-atrapalha">Atrapalha</span><span>A pessoa passa, mas perde tempo ou conforto. Exemplo: calçada com pequenos desníveis.</span></li>
+    </ul>
+  </section>
+  <section class="wrap texto" aria-labelledby="c3">
+    <h2 id="c3">Como fotografar uma barreira</h2>
+    <ul>
+      <li>Enquadre o problema inteiro e um pedaço do entorno, para que se entenda onde ele fica.</li>
+      <li>Se puder, inclua algo que dê noção de tamanho, como uma porta, um poste ou um degrau completo.</li>
+      <li>Fotografe com boa luz e sem usar zoom digital.</li>
+      <li>Descreva no formulário o que a foto mostra. Esse texto vira a descrição da imagem para quem usa leitor de tela.</li>
+    </ul>
+  </section>
+  <section class="wrap texto" aria-labelledby="c4">
+    <h2 id="c4">O que não publicamos</h2>
+    <ul>
+      <li>Fotos com pessoas identificáveis, incluindo rostos e placas de veículos legíveis.</li>
+      <li>Imagens do interior de casas ou de áreas privadas.</li>
+      <li>Fotos que não mostram uma barreira de acessibilidade.</li>
+      <li>Textos com ofensas ou acusações a pessoas.</li>
+    </ul>
+  </section>
+</template>
+<template id="tpl-sobre">
+
+  <div class="wrap">
+    <div class="pagina-topo">
+      <h1>Sobre o projeto</h1>
+      <p class="lead">Um registro em fotos das barreiras que moradores e visitantes com deficiência motora encontram em Niterói.</p>
+    </div>
+  </div>
+  <section class="wrap texto" aria-labelledby="s1">
+    <h2 id="s1">Por que existe</h2>
+    <p>Quem usa cadeira de rodas, muletas ou anda com dificuldade conhece de cor os pontos da cidade que não dá para atravessar. Esse conhecimento costuma ficar só com a própria pessoa. O Caminho Livre junta esses relatos em um só lugar, com foto, bairro e descrição, para que fiquem visíveis para quem planeja o caminho e para quem decide onde consertar.</p>
+    <h2 id="s2">Para quem é</h2>
+    <ul>
+      <li>Pessoas com deficiência motora e seus acompanhantes, para saber o que esperar em um trajeto.</li>
+      <li>Moradores que querem apontar um problema perto de casa.</li>
+      <li>Profissionais, associações e órgãos que acompanham a acessibilidade da cidade.</li>
+    </ul>
+  </section>
+</template>
+
+<!-- Locais levados junto com o site: o arquivo dados.js fica na mesma pasta deste HTML.
+     Se ele não existir, o site funciona normalmente, só sem esses locais. -->
+<script src="dados.js"></script>
+<script>
+/* Caminho Livre Niterói: site sem servidor.
+   Envios (com as fotos) e aprovações ficam no IndexedDB do navegador; a sessão fica no localStorage. */
+(function () {
+  "use strict";
+
+  /* ---------- listas fixas ---------- */
+  var TIPOS = [
+    ["calcada", "Calçada quebrada ou irregular"],
+    ["degrau", "Degrau sem rampa"],
+    ["rampa", "Rampa muito inclinada ou danificada"],
+    ["escada", "Só há escada"],
+    ["obstaculo", "Obstáculo na calçada"],
+    ["travessia", "Travessia sem rebaixamento"],
+    ["porta", "Porta ou passagem estreita"],
+    ["banheiro", "Sem banheiro acessível"],
+    ["vaga", "Sem vaga reservada"],
+    ["elevador", "Elevador quebrado ou ausente"],
+    ["transporte", "Ponto ou embarque inacessível"],
+    ["apoio", "Sem corrimão ou apoio"]
+  ];
+  var TIPO_NOME = {};
+  TIPOS.forEach(function (t) { TIPO_NOME[t[0]] = t[1]; });
+  var GRAV = [["impede", "Impede a passagem"], ["dificulta", "Dificulta muito"], ["atrapalha", "Atrapalha"]];
+  var GRAV_NOME = {};
+  GRAV.forEach(function (g) { GRAV_NOME[g[0]] = g[1]; });
+  var BAIRROS = ["Icaraí", "Centro", "Ingá", "São Francisco", "Charitas", "Jurujuba", "Boa Viagem", "Gragoatá", "Santa Rosa", "Vital Brazil", "Fonseca", "Barreto", "Engenhoca", "Santana", "Largo da Batalha", "Pendotiba", "Piratininga", "Camboinhas", "Itaipu", "Itacoatiara", "Cafubá", "Maravista", "Cubango", "Viradouro", "São Lourenço", "Pé Pequeno", "Ponta d'Areia", "Fátima", "Badu", "Cantagalo"];
+  var PAGINAS = [
+    ["#/", "Início", "home"],
+    ["#/galeria", "Galeria", "galeria"],
+    ["#/como-funciona", "Como funciona", "como"],
+    ["#/sobre", "Sobre", "sobre"]
+  ];
+  var DESTINOS_OK = ["galeria", "enviar", "revisar"];
+
+  /* ---------- utilitários ---------- */
+  var $ = function (s) { return document.querySelector(s); };
+  function h(tag, attrs) {
+    var el = document.createElement(tag);
+    if (attrs) {
+      for (var k in attrs) {
+        var v = attrs[k];
+        if (v == null || v === false) continue;
+        if (k === "class") el.className = v;
+        else if (k === "text") el.textContent = v;
+        else if (k.indexOf("on") === 0) el.addEventListener(k.slice(2), v);
+        else if (v === true) el.setAttribute(k, "");
+        else el.setAttribute(k, v);
+      }
+    }
+    for (var i = 2; i < arguments.length; i++) {
+      var kids = [].concat(arguments[i]);
+      for (var j = 0; j < kids.length; j++) {
+        var c = kids[j];
+        if (c == null || c === false) continue;
+        el.append(c.nodeType ? c : document.createTextNode(String(c)));
+      }
+    }
+    return el;
+  }
+  function norm(s) { return String(s || "").trim().toLowerCase(); }
+  function data(ts) {
+    try { return new Date(ts).toLocaleDateString("pt-BR", { day: "numeric", month: "short", year: "numeric" }); }
+    catch (e) { return ""; }
+  }
+  function param(nome) {
+    try { return new URLSearchParams(location.hash.split("?")[1] || "").get(nome) || ""; } catch (e) { return ""; }
+  }
+  function passoDuplo(btn, rotulo2, fn) {
+    var original = btn.textContent, armado = false, t = null;
+    btn.addEventListener("click", function () {
+      if (!armado) {
+        armado = true; btn.textContent = rotulo2;
+        t = setTimeout(function () { armado = false; btn.textContent = original; }, 4000);
+        return;
+      }
+      clearTimeout(t); armado = false; btn.textContent = original; fn(btn);
+    });
+  }
+
+  /* ---------- armazenamento no navegador ---------- */
+  /* Envios e fotos: IndexedDB (cabe bem mais que o localStorage). Uma cópia fica em memória
+     para as telas lerem de forma simples. Se o IndexedDB não estiver disponível, usa o localStorage. */
+  var K = { env: "cl_envios", sess: "cl_sessao", rem: "cl_removidos" };
+  var DB = { db: null, lista: [] };
+  /* Alguns visualizadores de arquivo (por exemplo, ao abrir o arquivo direto do celular) bloqueiam o
+     armazenamento do navegador. Nesse caso o site continua funcionando, mas guarda tudo só em memória. */
+  var MEM = {}, MODO_MEM = false;
+  try { localStorage.setItem("cl_t", "1"); localStorage.removeItem("cl_t"); } catch (e) { MODO_MEM = true; }
+  function ler(k, def) {
+    if (MODO_MEM) return MEM[k] !== undefined ? MEM[k] : def;
+    try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch (e) { return def; }
+  }
+  function gravar(k, v) {
+    if (MODO_MEM) { MEM[k] = v; return true; }
+    try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; }
+  }
+  function apagar(k) {
+    delete MEM[k];
+    try { localStorage.removeItem(k); } catch (e) {}
+  }
+  function sessao() { return ler(K.sess, null); }
+  /* cada envio tem status: "pendente" (esperando revisão) ou "aprovado" (aparece na galeria) */
+  function registros() {
+    return DB.lista.filter(function (x) { return x.status !== "pendente"; }).sort(function (a, b) { return b.criadoEm - a.criadoEm; });
+  }
+  function pendentes() {
+    return DB.lista.filter(function (x) { return x.status === "pendente"; }).sort(function (a, b) { return a.criadoEm - b.criadoEm; });
+  }
+  function achar(id) {
+    var a = DB.lista.filter(function (x) { return x.id === id; })[0];
+    return a ? { item: a, status: a.status === "pendente" ? "pendente" : "aprovado" } : null;
+  }
+  function abrirDB(pronto) {
+    var terminou = false;
+    if (MODO_MEM || typeof indexedDB === "undefined") { DB.db = null; DB.lista = ler(K.env, []); return pronto(); }
+    function fim() { if (!terminou) { terminou = true; pronto(); } }
+    function usarLocalStorage() { DB.db = null; DB.lista = ler(K.env, []); fim(); }
+    // envios antigos guardados em versões anteriores do site
+    function migrar() {
+      var velhos = ler("cl_aprovados", []).map(function (x) { x.status = "aprovado"; return x; })
+        .concat(ler("cl_pendentes", []).map(function (x) { x.status = "pendente"; return x; }));
+      apagar("cl_aprovados"); apagar("cl_pendentes");
+      return velhos;
+    }
+    try {
+      var req = indexedDB.open("caminho-livre", 1);
+      req.onupgradeneeded = function () { req.result.createObjectStore("envios", { keyPath: "id" }); };
+      req.onerror = req.onblocked = usarLocalStorage;
+      req.onsuccess = function () {
+        DB.db = req.result;
+        var velhos = migrar();
+        var tx = DB.db.transaction("envios", "readwrite"), st = tx.objectStore("envios");
+        velhos.forEach(function (v) { st.put(v); });
+        var all = st.getAll();
+        all.onsuccess = function () { DB.lista = all.result || []; fim(); };
+        all.onerror = usarLocalStorage;
+      };
+    } catch (e) { usarLocalStorage(); }
+  }
+  function guardarNaLista(item) {
+    var i = -1;
+    DB.lista.forEach(function (x, n) { if (x.id === item.id) i = n; });
+    if (i >= 0) DB.lista[i] = item; else DB.lista.push(item);
+  }
+  function salvarEnvio(item, cb) {
+    if (!DB.db) {
+      var antes = DB.lista.slice();
+      guardarNaLista(item);
+      if (!gravar(K.env, soLocais())) { DB.lista = antes; return cb(false); }
+      return cb(true);
+    }
+    try {
+      var tx = DB.db.transaction("envios", "readwrite");
+      tx.objectStore("envios").put(item);
+      tx.oncomplete = function () { guardarNaLista(item); cb(true); };
+      tx.onerror = tx.onabort = function () { cb(false); };
+    } catch (e) { cb(false); }
+  }
+  function removerEnvio(id, cb) {
+    var veio = DB.lista.filter(function (x) { return x.id === id && x.origem === "arquivo"; })[0];
+    if (veio) {
+      // locais do dados.js não podem ser apagados do arquivo; o navegador só lembra de escondê-los
+      var rem = ler(K.rem, []);
+      if (rem.indexOf(id) < 0) { rem.push(id); gravar(K.rem, rem); }
+    }
+    DB.lista = DB.lista.filter(function (x) { return x.id !== id; });
+    if (!DB.db) { gravar(K.env, soLocais()); return cb(); }
+    try {
+      var tx = DB.db.transaction("envios", "readwrite");
+      tx.objectStore("envios").delete(id);
+      tx.oncomplete = tx.onerror = tx.onabort = function () { cb(); };
+    } catch (e) { cb(); }
+  }
+  /* envios guardados neste navegador (sem os que vieram do dados.js) */
+  function soLocais() { return DB.lista.filter(function (x) { return x.origem !== "arquivo"; }); }
+
+  /* ---------- dados levados junto com o site (dados.js) ---------- */
+  function juntarArquivo() {
+    var vindos = window.CAMINHO_LIVRE_DADOS;
+    if (!Array.isArray(vindos)) return;
+    var rem = ler(K.rem, []), tem = {};
+    DB.lista.forEach(function (x) { tem[x.id] = 1; });
+    vindos.forEach(function (v) {
+      if (!v || !v.id || tem[v.id] || rem.indexOf(v.id) >= 0) return;
+      var c = {}; Object.keys(v).forEach(function (k) { c[k] = v[k]; });
+      c.status = "aprovado"; c.origem = "arquivo";
+      DB.lista.push(c); tem[v.id] = 1;
+    });
+  }
+  function exportarDados() {
+    var campos = ["id", "nome", "bairro", "endereco", "tipos", "gravidade", "descricao", "thumb", "full", "img", "autor", "criadoEm", "aprovadoEm"];
+    var lista = registros().map(function (it) {
+      var c = { status: "aprovado" };
+      campos.forEach(function (k) { if (it[k] !== undefined) c[k] = it[k]; });
+      return c;
+    });
+    var texto = "/* Caminho Livre Niterói: locais publicados, exportados em " + new Date().toLocaleString("pt-BR") + ".\n" +
+      "   Deixe este arquivo com o nome dados.js, na mesma pasta do HTML do site. */\n" +
+      "window.CAMINHO_LIVRE_DADOS = [\n" + lista.map(function (x) { return JSON.stringify(x); }).join(",\n") + "\n];\n";
+    var url = URL.createObjectURL(new Blob([texto], { type: "text/javascript;charset=utf-8" }));
+    var a = h("a", { href: url, download: "dados.js" });
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    return lista.length;
+  }
+  function thumbDe(it) { return it.thumb || it.img; }
+  function fotoDe(it) { return it.full || it.img; }
+
+  /* ---------- peças de interface ---------- */
+  function onde(it) { return [it.bairro, it.endereco].filter(Boolean).join(" · "); }
+  function altDe(it) { return it.nome + (it.bairro ? ", " + it.bairro : "") + ". " + (it.descricao || ""); }
+  function pill(g) { return GRAV_NOME[g] ? h("span", { class: "pill sev-" + g, text: GRAV_NOME[g] }) : null; }
+  function tags(list) {
+    return h("div", { class: "tags" }, (list || []).map(function (t) {
+      return TIPO_NOME[t] ? h("span", { class: "tag", text: TIPO_NOME[t] }) : null;
+    }));
+  }
+  function cartao(it) {
+    return h("article", { class: "card" },
+      h("img", { src: thumbDe(it), alt: altDe(it), loading: "lazy" }),
+      h("div", { class: "card-body" },
+        h("h3", null, h("a", { class: "card-open", href: "#/local?id=" + encodeURIComponent(it.id) }, it.nome)),
+        h("p", { class: "meta", text: onde(it) }),
+        pill(it.gravidade),
+        tags(it.tipos)
+      )
+    );
+  }
+
+  /* ---------- topo e rodapé (iguais em todas as páginas) ---------- */
+  function montarTopo(pagina) {
+    var s = sessao();
+    var nav = h("nav", { class: "nav", "aria-label": "Principal" });
+    PAGINAS.forEach(function (p) {
+      var a = h("a", { href: p[0] }, p[1]);
+      if (p[2] === pagina) a.setAttribute("aria-current", "page");
+      nav.append(a);
+    });
+    var conta = h("div", { class: "conta" });
+    if (s) {
+      conta.append(h("span", { class: "conta-email", text: s.email }));
+      if (s.admin) {
+        var r = h("a", { class: "btn btn-ghost btn-sm", href: "#/revisar" }, "Revisar envios");
+        if (pagina === "revisar") r.setAttribute("aria-current", "page");
+        conta.append(r);
+      }
+      conta.append(h("button", { class: "btn btn-ghost btn-sm", type: "button", onclick: function () {
+        apagar(K.sess);
+        render();
+      } }, "Sair"));
+    } else {
+      conta.append(h("a", { class: "btn btn-ghost btn-sm", href: "#/entrar" }, "Entrar"));
+    }
+    conta.append(h("a", { class: "btn btn-primary", href: "#/enviar" }, "Enviar uma foto"));
+
+    var avisoMem = MODO_MEM
+      ? h("div", { class: "wrap" }, h("p", { class: "aviso", text: "Este navegador não deixa o site guardar dados. O que você enviar vale só enquanto esta página estiver aberta." }))
+      : document.createDocumentFragment();
+    $("#topo").replaceChildren(
+      h("a", { class: "skip", href: "#/", onclick: function (e) { e.preventDefault(); $("#conteudo").focus(); } }, "Ir para o conteúdo"),
+      avisoMem,
+      h("header", { class: "wrap top" },
+        h("a", { class: "brand", href: "#/", "aria-label": "Caminho Livre Niterói, página inicial" },
+          h("div", { class: "mark", "aria-hidden": "true" }),
+          h("div", null, h("b", null, "Caminho Livre"), h("span", null, "Niterói"))),
+        h("div", { class: "topo-dir" }, nav, conta)
+      ),
+      h("div", { class: "tatil", "aria-hidden": "true" })
+    );
+  }
+  function montarRodape() {
+    $("#rodape").replaceChildren(
+      h("div", { class: "tatil", "aria-hidden": "true" }),
+      h("footer", { class: "wrap rodape-site" },
+        h("div", { class: "rodape-grade" },
+          h("div", null,
+            h("b", { class: "rodape-marca", text: "Caminho Livre Niterói" }),
+            h("p", { class: "hint", text: "Fotos de barreiras de acessibilidade para pessoas com deficiência motora." })),
+          h("nav", { "aria-label": "Rodapé", class: "rodape-links" },
+            h("a", { href: "#/galeria" }, "Galeria"),
+            h("a", { href: "#/enviar" }, "Enviar uma foto"),
+            h("a", { href: "#/como-funciona" }, "Como funciona"),
+            h("a", { href: "#/sobre" }, "Sobre"))
+        )
+      )
+    );
+  }
+
+  /* ---------- início ---------- */
+  function paginaInicio() {
+    var lista = registros();
+    var bs = {}, ts = {};
+    lista.forEach(function (l) {
+      if (l.bairro) bs[norm(l.bairro)] = 1;
+      (l.tipos || []).forEach(function (t) { ts[t] = (ts[t] || 0) + 1; });
+    });
+    function num(n, rotulo) { return h("div", { class: "num" }, h("b", { text: String(n) }), h("span", { text: rotulo })); }
+    $("#home-numeros").replaceChildren(
+      num(lista.length, lista.length === 1 ? "local registrado" : "locais registrados"),
+      num(Object.keys(bs).length, Object.keys(bs).length === 1 ? "bairro com registro" : "bairros com registro"),
+      num(Object.keys(ts).length, "tipos de barreira diferentes")
+    );
+    var rec = $("#home-recentes");
+    if (!lista.length) rec.append(h("p", { class: "hint", text: "Ainda não há locais registrados. Seja a primeira pessoa a enviar uma foto." }));
+    lista.slice(0, 3).forEach(function (it) { rec.append(cartao(it)); });
+    var tp = $("#home-tipos");
+    TIPOS.forEach(function (t) {
+      var n = ts[t[0]] || 0;
+      tp.append(h("a", { class: "tipo-link", href: "#/galeria?tipo=" + t[0] },
+        h("span", { text: t[1] }),
+        h("b", { text: String(n) })));
+    });
+  }
+
+  /* ---------- galeria ---------- */
+  var filtro = { q: "", bairro: "", tipos: {} };
+  function filtrados() {
+    var q = norm(filtro.q);
+    var sel = Object.keys(filtro.tipos).filter(function (k) { return filtro.tipos[k]; });
+    return registros().filter(function (it) {
+      if (filtro.bairro && norm(it.bairro) !== filtro.bairro) return false;
+      if (sel.length && !sel.some(function (t) { return (it.tipos || []).indexOf(t) >= 0; })) return false;
+      if (q && norm([it.nome, it.bairro, it.endereco, it.descricao].join(" ")).indexOf(q) < 0) return false;
+      return true;
+    });
+  }
+  function renderGaleria() {
+    var grade = $("#grade"), estado = $("#estado");
+    grade.replaceChildren(); estado.replaceChildren();
+    var ativo = !!(filtro.q || filtro.bairro || Object.keys(filtro.tipos).some(function (k) { return filtro.tipos[k]; }));
+    $("#limpar").hidden = !ativo;
+    var lista = filtrados();
+    $("#contagem").textContent = lista.length === 1 ? "1 local encontrado" : lista.length + " locais encontrados";
+    if (!lista.length && !registros().length) {
+      estado.append(h("div", { class: "estado" }, h("h3", { text: "Ainda não há locais registrados" }), h("p", { text: "Os envios aparecem aqui assim que são feitos." }), h("a", { class: "btn btn-primary", href: "#/enviar" }, "Enviar uma foto")));
+      return;
+    }
+    if (!lista.length) {
+      estado.append(h("div", { class: "estado" }, h("h3", { text: "Nada com esses filtros" }), h("p", { text: "Tente outro bairro, tire algum tipo de barreira ou limpe a busca." })));
+      return;
+    }
+    lista.forEach(function (it) { grade.append(cartao(it)); });
+  }
+  function paginaGaleria() {
+    var bs = {}, opts = [];
+    registros().forEach(function (l) {
+      var k = norm(l.bairro);
+      if (k && !bs[k]) { bs[k] = 1; opts.push([k, String(l.bairro).trim()]); }
+    });
+    opts.sort(function (a, b) { return a[1].localeCompare(b[1], "pt-BR"); });
+    var sel = $("#filtro-bairro");
+    opts.forEach(function (o) { sel.append(h("option", { value: o[0], text: o[1] })); });
+
+    var chips = $("#chips");
+    TIPOS.forEach(function (t) {
+      var b = h("button", { class: "chip", type: "button", "aria-pressed": "false", "data-tipo": t[0] }, t[1]);
+      b.addEventListener("click", function () {
+        var on = !filtro.tipos[t[0]];
+        filtro.tipos[t[0]] = on;
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+        renderGaleria();
+      });
+      chips.append(b);
+    });
+
+    var t0 = param("tipo"), b0 = norm(param("bairro")), q0 = param("q");
+    if (TIPO_NOME[t0]) { filtro.tipos[t0] = true; var c = chips.querySelector('[data-tipo="' + t0 + '"]'); if (c) c.setAttribute("aria-pressed", "true"); }
+    if (b0 && bs[b0]) { filtro.bairro = b0; sel.value = b0; }
+    if (q0) { filtro.q = q0; $("#busca").value = q0; }
+
+    $("#busca").addEventListener("input", function (e) { filtro.q = e.target.value; renderGaleria(); });
+    sel.addEventListener("change", function (e) { filtro.bairro = e.target.value; renderGaleria(); });
+    $("#limpar").addEventListener("click", function () {
+      filtro = { q: "", bairro: "", tipos: {} };
+      $("#busca").value = ""; sel.value = "";
+      chips.querySelectorAll(".chip").forEach(function (c2) { c2.setAttribute("aria-pressed", "false"); });
+      renderGaleria();
+    });
+    renderGaleria();
+  }
+
+  /* ---------- página de um local ---------- */
+  function paginaLocal() {
+    var box = $("#local"), id = param("id");
+    var r = id ? achar(id) : null;
+    var s = sessao();
+    if (r && r.status === "pendente" && !(s && (s.admin || s.email === r.item.autor))) r = null;
+    if (!r) {
+      document.title = "Local não encontrado · Caminho Livre Niterói";
+      box.replaceChildren(h("div", { class: "estado" },
+        h("h1", { class: "h-estado", text: "Local não encontrado" }),
+        h("p", { text: "Este endereço não leva a nenhum local registrado. Ele pode ter sido removido." }),
+        h("a", { class: "btn btn-primary", href: "#/galeria" }, "Voltar à galeria")));
+      return;
+    }
+    var it = r.item;
+    document.title = it.nome + " · Caminho Livre Niterói";
+    var acoes = h("div", { class: "acoes" }, h("a", { class: "btn btn-ghost", href: "#/galeria" }, "Voltar à galeria"));
+    var podeRemover = s && (s.admin || s.email === it.autor);
+    if (podeRemover) {
+      var rem = h("button", { class: "btn btn-danger", type: "button" }, "Remover este envio");
+      passoDuplo(rem, "Confirmar remoção", function () {
+        removerEnvio(it.id, function () { location.href = "#/galeria"; });
+      });
+      acoes.append(rem);
+    }
+    var vizinhos = registros().filter(function (x) { return x.id !== it.id && norm(x.bairro) === norm(it.bairro); }).slice(0, 3);
+    box.replaceChildren(
+      h("nav", { class: "migalhas", "aria-label": "Você está em" }, h("a", { href: "#/galeria" }, "Galeria"), " › ", h("span", { text: it.nome })),
+      h("div", { class: "detalhe" },
+        h("div", { class: "detalhe-foto" },
+          h("img", { src: fotoDe(it), alt: altDe(it) })),
+        h("div", { class: "dlg-dados" },
+          h("h1", { class: "h-detalhe", text: it.nome }),
+          h("p", { class: "meta", text: onde(it) }),
+          pill(it.gravidade),
+          tags(it.tipos),
+          h("p", { class: "descricao", text: it.descricao || "" }),
+          r.status === "pendente" ? h("p", { class: "aviso", text: "Este envio está em análise e ainda não aparece na galeria." }) : null,
+          h("p", { class: "meta", text: "Enviado em " + data(it.criadoEm) }),
+          acoes)
+      ),
+      vizinhos.length ? h("section", { class: "secao", "aria-labelledby": "viz-t" },
+        h("h2", { id: "viz-t", text: "Outros locais em " + it.bairro }),
+        h("div", { class: "grade" }, vizinhos.map(cartao))) : null
+    );
+  }
+
+  /* ---------- login simulado ---------- */
+  function paginaEntrar() {
+    var modo = "entrar";
+    function trocar(m) {
+      modo = m;
+      $("#aba-entrar").setAttribute("aria-pressed", m === "entrar" ? "true" : "false");
+      $("#aba-criar").setAttribute("aria-pressed", m === "criar" ? "true" : "false");
+      $("#a-enviar").textContent = m === "entrar" ? "Entrar" : "Criar conta";
+      $("#a-dica").hidden = m !== "criar";
+      $("#auth-titulo").textContent = m === "entrar" ? "Entrar" : "Criar conta";
+      $("#a-erro").hidden = true;
+    }
+    $("#aba-entrar").addEventListener("click", function () { trocar("entrar"); });
+    $("#aba-criar").addEventListener("click", function () { trocar("criar"); });
+    var s = sessao();
+    if (s) {
+      $("#form-auth").hidden = true; $(".abas").hidden = true;
+      $("#ja-logado").hidden = false;
+      $("#ja-email").textContent = s.email;
+    }
+    $("#form-auth").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var email = $("#a-email").value.trim(), senha = $("#a-senha").value, erro = $("#a-erro");
+      function falha(m) { erro.textContent = m; erro.hidden = false; }
+      erro.hidden = true;
+      if (!/^\S+@\S+\.\S+$/.test(email)) return falha("Digite um e-mail válido.");
+      if (!senha) return falha("Digite uma senha.");
+      if (modo === "criar" && senha.length < 8) return falha("A senha precisa ter pelo menos 8 caracteres.");
+      gravar(K.sess, { email: email, admin: $("#a-admin").checked });
+      var destino = param("voltar");
+      location.hash = "#/" + (DESTINOS_OK.indexOf(destino) >= 0 ? destino : "");
+    });
+  }
+
+  /* ---------- envio ---------- */
+  function carregarImagem(file) {
+    return new Promise(function (res, rej) {
+      var url = URL.createObjectURL(file), img = new Image();
+      img.onload = function () { URL.revokeObjectURL(url); res(img); };
+      img.onerror = function () { URL.revokeObjectURL(url); rej(new Error("imagem")); };
+      img.src = url;
+    });
+  }
+  function codificar(img, maxDim, q, maxLen) {
+    var esc = Math.min(1, maxDim / Math.max(img.naturalWidth, img.naturalHeight));
+    for (var t = 0; t < 8; t++) {
+      var w = Math.max(1, Math.round(img.naturalWidth * esc)), hh = Math.max(1, Math.round(img.naturalHeight * esc));
+      var c = document.createElement("canvas");
+      c.width = w; c.height = hh;
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, w, hh); ctx.drawImage(img, 0, 0, w, hh);
+      for (var qq = q; qq >= 0.44; qq -= 0.1) {
+        var url = c.toDataURL("image/jpeg", qq);
+        if (url.length <= maxLen) return url;
+      }
+      esc *= 0.8;
+    }
+    throw new Error("grande");
+  }
+  function paginaEnviar() {
+    var s = sessao();
+    if (!s) { $("#enviar-login").hidden = false; $("#enviar-form").hidden = true; return; }
+    $("#enviar-login").hidden = true; $("#enviar-form").hidden = false;
+
+    $("#f-tipos").append.apply($("#f-tipos"), TIPOS.map(function (t) {
+      return h("label", { class: "check" }, h("input", { type: "checkbox", name: "tipo", value: t[0] }), h("span", { text: t[1] }));
+    }));
+    $("#f-grav").append.apply($("#f-grav"), GRAV.map(function (g) {
+      return h("label", { class: "check" }, h("input", { type: "radio", name: "grav", value: g[0] }), h("span", { text: g[1] }));
+    }));
+    $("#lista-bairros").append.apply($("#lista-bairros"), BAIRROS.map(function (b) { return h("option", { value: b }); }));
+
+    var foto = { thumb: null, full: null, pronto: false, lendo: false };
+    function erro(m) { var e = $("#f-erro"); e.textContent = m; e.hidden = false; e.scrollIntoView({ block: "nearest" }); }
+    function resetar() {
+      $("#form-envio").reset();
+      foto = { thumb: null, full: null, pronto: false, lendo: false };
+      $("#f-prev").hidden = true; $("#f-status").textContent = ""; $("#f-erro").hidden = true;
+      $("#form-envio").hidden = false; $("#envio-ok").hidden = true;
+    }
+    function meusEnvios() {
+      var meus = pendentes().filter(function (p) { return p.autor === s.email; });
+      $("#meus-wrap").hidden = !meus.length;
+      $("#meus-n").textContent = String(meus.length);
+      var l = $("#meus-lista"); l.replaceChildren();
+      meus.forEach(function (e) {
+        l.append(h("article", { class: "rev" },
+          h("a", { class: "rev-img", href: "#/local?id=" + encodeURIComponent(e.id), "aria-label": "Ver " + e.nome }, h("img", { src: thumbDe(e), alt: "" })),
+          h("div", { class: "rev-body" }, h("h3", { text: e.nome }), h("p", { class: "meta", text: onde(e) + " · enviado em " + data(e.criadoEm) }))));
+      });
+    }
+    meusEnvios();
+
+    $("#f-foto").addEventListener("change", function (e) {
+      var f = e.target.files && e.target.files[0];
+      if (!f) return;
+      foto = { thumb: null, full: null, pronto: false, lendo: true };
+      $("#f-prev").hidden = true; $("#f-status").textContent = "Preparando a foto…";
+      carregarImagem(f).then(function (img) {
+        foto.thumb = codificar(img, 480, 0.72, 38000);
+        foto.full = codificar(img, 1400, 0.8, 350000);
+        foto.pronto = true; foto.lendo = false;
+        $("#f-prev-img").src = foto.thumb; $("#f-prev").hidden = false;
+        $("#f-status").textContent = "Foto pronta.";
+      }).catch(function () {
+        foto = { thumb: null, full: null, pronto: false, lendo: false };
+        $("#f-status").textContent = "Não foi possível ler esta imagem. Escolha outra foto (JPG, PNG ou WebP).";
+      });
+    });
+    $("#ok-outra").addEventListener("click", function () { resetar(); $("#f-foto").focus(); });
+    $("#ok-ver").addEventListener("click", function (e) { e.preventDefault(); $("#meus-wrap").scrollIntoView({ block: "start" }); });
+
+    $("#form-envio").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      $("#f-erro").hidden = true;
+      if (foto.lendo) return erro("Aguarde: a foto ainda está sendo preparada.");
+      if (!foto.pronto) return erro("Escolha a foto do local.");
+      var nome = $("#f-local").value.trim(), bairro = $("#f-bairro").value.trim(), end = $("#f-end").value.trim(), desc = $("#f-desc").value.trim();
+      var tipos = [].slice.call(document.querySelectorAll("#f-tipos input:checked")).map(function (i) { return i.value; });
+      var g = document.querySelector("#f-grav input:checked");
+      if (nome.length < 2) return erro("Informe o nome do local.");
+      if (bairro.length < 2) return erro("Informe o bairro.");
+      if (!tipos.length) return erro("Marque pelo menos um tipo de barreira.");
+      if (!g) return erro("Diga quanto a barreira atrapalha.");
+      if (desc.length < 10) return erro("Descreva o problema em pelo menos uma frase curta.");
+      if (!$("#f-ok").checked) return erro("Confirme que a foto não mostra pessoas identificáveis.");
+      var item = {
+        id: "u-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        nome: nome, bairro: bairro, endereco: end, tipos: tipos, gravidade: g.value, descricao: desc,
+        thumb: foto.thumb, full: foto.full, autor: s.email, criadoEm: Date.now(), status: "pendente"
+      };
+      var btn = $("#f-enviar"); btn.disabled = true;
+      salvarEnvio(item, function (ok) {
+        btn.disabled = false;
+        if (!ok) return erro("Não foi possível guardar a foto neste navegador. O armazenamento pode estar cheio ou bloqueado. Tente com uma foto menor.");
+        $("#form-envio").hidden = true; $("#envio-ok").hidden = false;
+        meusEnvios();
+        $("#ok-ver").focus();
+      });
+    });
+  }
+
+  /* ---------- revisão (administrador) ---------- */
+  function paginaRevisar() {
+    var box = $("#rev-conteudo"), s = sessao();
+    if (!s) {
+      box.replaceChildren(h("div", { class: "estado" },
+        h("h2", { text: "Entre para revisar envios" }),
+        h("p", { text: "Esta área é para administradores. Marque a opção de administrador ao entrar." }),
+        h("a", { class: "btn btn-primary", href: "#/entrar?voltar=revisar" }, "Entrar")));
+      return;
+    }
+    if (!s.admin) {
+      box.replaceChildren(h("div", { class: "estado" },
+        h("h2", { text: "Só administradores acessam esta área" }),
+        h("p", { text: "Você entrou como " + s.email + ", sem permissão de administrador. Saia e entre de novo marcando a opção de administrador." })));
+      return;
+    }
+    function desenhar() {
+      var pend = pendentes();
+      var pub = registros();
+      box.replaceChildren();
+      var nArq = pub.filter(function (x) { return x.origem === "arquivo"; }).length;
+      var exp = h("button", { class: "btn btn-primary", type: "button", disabled: !pub.length }, "Exportar dados do site (dados.js)");
+      var expStatus = h("p", { class: "hint", role: "status" });
+      exp.addEventListener("click", function () {
+        var n = exportarDados();
+        expStatus.textContent = "Arquivo dados.js gerado com " + n + (n === 1 ? " local publicado." : " locais publicados.") + " Coloque-o na mesma pasta do HTML.";
+      });
+      box.append(h("section", { class: "revisao", "aria-labelledby": "x-t" },
+        h("h2", { id: "x-t", text: "Levar os locais para outro computador" }),
+        h("p", { text: "Gera o arquivo dados.js com todos os locais publicados, incluindo as fotos. Deixe esse arquivo na mesma pasta do HTML do site: em qualquer computador, os locais aparecem na galeria ao abrir a página. Envios em análise não entram no arquivo." }),
+        nArq ? h("p", { class: "hint", text: nArq + (nArq === 1 ? " local publicado veio" : " locais publicados vieram") + " do dados.js desta pasta." }) : null,
+        h("div", { class: "acoes" }, exp),
+        expStatus
+      ));
+      box.append(h("section", { class: "revisao", "aria-labelledby": "p-t" },
+        h("h2", { id: "p-t", text: "Envios para revisar (" + pend.length + ")" }),
+        pend.length ? h("div", null, pend.map(function (e) {
+          var aprovar = h("button", { class: "btn btn-primary btn-sm", type: "button", onclick: function () {
+            var copia = {}; Object.keys(e).forEach(function (k) { copia[k] = e[k]; });
+            copia.status = "aprovado"; copia.aprovadoEm = Date.now();
+            aprovar.disabled = true;
+            salvarEnvio(copia, function (ok) {
+              if (!ok) { aprovar.disabled = false; aprovar.textContent = "Não foi possível guardar"; return; }
+              desenhar();
+            });
+          } }, "Aprovar e publicar");
+          var recusar = h("button", { class: "btn btn-ghost btn-sm btn-danger", type: "button" }, "Recusar");
+          passoDuplo(recusar, "Confirmar recusa", function () {
+            removerEnvio(e.id, desenhar);
+          });
+          return h("article", { class: "rev" },
+            h("a", { class: "rev-img", href: "#/local?id=" + encodeURIComponent(e.id), "aria-label": "Ver foto inteira de " + e.nome }, h("img", { src: thumbDe(e), alt: "" })),
+            h("div", { class: "rev-body" },
+              h("h3", { text: e.nome }), h("p", { class: "meta", text: onde(e) + " · por " + e.autor }),
+              pill(e.gravidade), tags(e.tipos), h("p", { text: e.descricao || "" }),
+              h("div", { class: "rev-actions" }, aprovar, recusar)));
+        })) : h("p", { class: "hint", text: "Nenhum envio esperando revisão. Quando alguém enviar uma foto, ela aparecerá aqui." })
+      ));
+      box.append(h("section", { class: "revisao", "aria-labelledby": "q-t" },
+        h("h2", { id: "q-t", text: "Publicados (" + pub.length + ")" }),
+        pub.length ? h("div", null, pub.map(function (e) {
+          var rem = h("button", { class: "btn btn-ghost btn-sm btn-danger", type: "button" }, "Remover");
+          passoDuplo(rem, "Confirmar remoção", function () {
+            removerEnvio(e.id, desenhar);
+          });
+          return h("article", { class: "rev" },
+            h("a", { class: "rev-img", href: "#/local?id=" + encodeURIComponent(e.id), "aria-label": "Ver " + e.nome }, h("img", { src: thumbDe(e), alt: "" })),
+            h("div", { class: "rev-body" }, h("h3", { text: e.nome }), h("p", { class: "meta", text: onde(e) + " · por " + (e.autor || "") }), h("div", { class: "rev-actions" }, rem)));
+        })) : h("p", { class: "hint", text: "Nenhum envio foi publicado ainda." })
+      ));
+    }
+    desenhar();
+  }
+
+  /* ---------- partida ---------- */
+  var ROTAS = {
+    "": ["home", "Caminho Livre Niterói"],
+    galeria: ["galeria", "Galeria · Caminho Livre Niterói"],
+    local: ["local", "Local · Caminho Livre Niterói"],
+    enviar: ["enviar", "Enviar uma foto · Caminho Livre Niterói"],
+    entrar: ["entrar", "Entrar · Caminho Livre Niterói"],
+    revisar: ["revisar", "Revisar envios · Caminho Livre Niterói"],
+    "como-funciona": ["como", "Como funciona · Caminho Livre Niterói"],
+    sobre: ["sobre", "Sobre · Caminho Livre Niterói"]
+  };
+  function render() {
+    var nome = location.hash.replace(/^#\/?/, "").split("?")[0];
+    if (!ROTAS.hasOwnProperty(nome)) nome = "";
+    var pagina = ROTAS[nome][0];
+    document.body.setAttribute("data-page", pagina);
+    document.title = ROTAS[nome][1];
+    $("#conteudo").replaceChildren(document.getElementById("tpl-" + pagina).content.cloneNode(true));
+    filtro = { q: "", bairro: "", tipos: {} };
+    montarTopo(pagina);
+    montarRodape();
+    if (pagina === "home") paginaInicio();
+    else if (pagina === "galeria") paginaGaleria();
+    else if (pagina === "local") paginaLocal();
+    else if (pagina === "entrar") paginaEntrar();
+    else if (pagina === "enviar") paginaEnviar();
+    else if (pagina === "revisar") paginaRevisar();
+  }
+  /* clicar num link para a página em que já se está recarrega a página, como no site de várias páginas */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href^='#/']");
+    if (a && a.getAttribute("href") === (location.hash || "#/") && !e.defaultPrevented) { e.preventDefault(); render(); window.scrollTo(0, 0); }
+  });
+  window.addEventListener("hashchange", function () {
+    render();
+    window.scrollTo(0, 0);
+    $("#conteudo").focus({ preventScroll: true });
+  });
+  abrirDB(function () { juntarArquivo(); render(); });
+})();
+
+</script>
+</body>
+</html>
