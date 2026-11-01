@@ -1,0 +1,1 @@
+Lembrete, substituir o dados.js pelo novo toda vez que enviar uma imagem nova, para aparecer tudo de uma vez em outros navegadores.
